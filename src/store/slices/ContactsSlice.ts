@@ -6,6 +6,7 @@ import {
   fetchAllContacts,
   submitNewContact,
 } from "../thunks/ContactsThunks.ts";
+import { RootState } from '../../app/store.ts';
 
 interface contactState {
   contacts: contact[];
@@ -18,6 +19,10 @@ const initialState: contactState = {
   loading: false,
   contact: null,
 };
+
+export const selectContactsArray = (state: RootState) => state.contacts.contacts;
+export const selectOneContact = (state: RootState) => state.contacts.contact;
+export const selectLoading = (state: RootState) => state.contacts.loading;
 
 export const contactsSlice = createSlice({
   name: "contacts",
