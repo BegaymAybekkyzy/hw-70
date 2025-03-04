@@ -6,9 +6,9 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <>
       <Navbar bg="primary" data-bs-theme="dark" className="mb-5">
-        <Container>
+        <Container className="w-50">
           <NavLink to="/" className="navbar-brand">
-            Home
+            Contacts
           </NavLink>
           <Nav className="me-auto">
             <NavLink to="/contacts/new-contact" className="nav-link">
