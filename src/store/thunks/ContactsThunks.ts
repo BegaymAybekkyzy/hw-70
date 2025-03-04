@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosApi from "../../axiosAPI.ts";
-import { RootState } from "../../app/store.ts";
 
 export const fetchAllContacts = createAsyncThunk<contact[], void>(
   "contacts/fetchAllContacts",
@@ -18,19 +17,30 @@ export const fetchAllContacts = createAsyncThunk<contact[], void>(
   },
 );
 
-export const contactID = createAsyncThunk<contactForm, string>(
+export const contactID = createAsyncThunk<contact, string>(
   "contacts/fetchContactID",
   async (id) => {
     const response = await axiosApi<contactForm>(`contacts/${id}.json`);
-    return response.data;
+    return {
+      ...response.data,
+      id: id,
+    };
   },
 );
 
-export const editContact = createAsyncThunk<void, string, { state: RootState }>(
+export const editContact = createAsyncThunk<void, contact>(
   "contacts/editContact",
-  async (id, thunkAPI) => {
-    const updatedContact = thunkAPI.getState().contacts.contact;
-    await axiosApi.put<contactForm>(`contacts/${id}.json`, updatedContact);
+  async (contact) => {
+    const updatedContact: contactForm = {
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone,
+      image: contact.image,
+    };
+    await axiosApi.put<contactForm>(
+      `contacts/${contact.id}.json`,
+      updatedContact,
+    );
   },
 );
 

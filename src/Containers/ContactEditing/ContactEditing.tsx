@@ -1,13 +1,12 @@
-import ContactForm from '../../components/ContactForm/ContactForm.tsx';
-import { useParams } from 'react-router-dom';
+import ContactForm from "../../components/ContactForm/ContactForm.tsx";
 
 const ContactEditing = () => {
-  const {id} = useParams();
-
   return (
     <div>
-     <h1></h1>
-      <ContactForm id={id}/>
+      <h1 className="text-center">Edit contact</h1>
+      <div className="mx-auto w-75 mb-5">
+        <ContactForm isEdit />
+      </div>
     </div>
   );
 };

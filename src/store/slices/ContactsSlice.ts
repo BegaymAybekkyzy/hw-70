@@ -6,12 +6,12 @@ import {
   fetchAllContacts,
   submitNewContact,
 } from "../thunks/ContactsThunks.ts";
-import { RootState } from '../../app/store.ts';
+import { RootState } from "../../app/store.ts";
 
 interface contactState {
   contacts: contact[];
   loading: boolean;
-  contact: contactForm | null;
+  contact: contact | null;
 }
 
 const initialState: contactState = {
@@ -20,7 +20,8 @@ const initialState: contactState = {
   contact: null,
 };
 
-export const selectContactsArray = (state: RootState) => state.contacts.contacts;
+export const selectContactsArray = (state: RootState) =>
+  state.contacts.contacts;
 export const selectOneContact = (state: RootState) => state.contacts.contact;
 export const selectLoading = (state: RootState) => state.contacts.loading;
 
